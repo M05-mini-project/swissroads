@@ -1,19 +1,11 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
-# %%
-from IPython import get_ipython
 
-# %%
 import numpy as np
 import pandas as pd
-get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 import PIL.Image as Image
 
-# %% [markdown]
-# ### load the npz file and create the array to be then used for model training and testing
+### helper function to load the npz file and create the array to be then used for model training and testing
 
-# %%
 with np.load('images_data.npz', allow_pickle=True) as npz_file:
     df = pd.DataFrame(npz_file['values'], columns= npz_file['columns'])
     
@@ -29,10 +21,9 @@ df_valid = df[df['imageSet'] == 'valid']
 X_va = df_valid.drop(['imageSet','category','imageFileName'], axis=1).values
 y_va = df_valid.category.values
 
-# %% [markdown]
-# ### transform the categories into numerical values for NN output
+### transform the categories into numerical values for NN output
 
-# %%
+
 def cat2num(x):
     if x == 'bike':
         return 0
@@ -53,20 +44,20 @@ y_tr = df_train.category_num.values
 y_va = df_valid.category_num.values
 y_te = df_test.category_num.values
 
-# %% [markdown]
+
 # ### scale the data on train dataset
 
-# %%
+
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 X_tr = scaler.fit_transform(X_tr.astype(np.float32))
 X_va = scaler.transform(X_va.astype(np.float32))
 X_te = scaler.transform(X_te.astype(np.float32))
 
-# %% [markdown]
+
 # ### create a batch generator function to train our nn.
 
-# %%
+
 def get_batches(X, y, batch_size):
     shuffled_idx = np.arange(len(y))
     np.random.shuffle(shuffled_idx)
@@ -75,7 +66,7 @@ def get_batches(X, y, batch_size):
         batch_idx = shuffled_idx[i:i+batch_size]
         yield X[batch_idx], y[batch_idx]
 
-# %% [markdown]
+
 # ### create a one layer dense network graph using tensorflow:
 # - Create the placeholders for X and y
 # - Create an output layer using tf.layers.dense
@@ -84,7 +75,7 @@ def get_batches(X, y, batch_size):
 # - Create a train node to be minimized
 # - Finally compute the predictions
 
-# %%
+
 import tensorflow as tf
 
 graph1 = tf.Graph()
@@ -117,13 +108,13 @@ with graph1.as_default():
     is_correct = tf.equal(y, predictions)
     accuracy = tf.reduce_mean(tf.cast(is_correct, dtype=tf.float32))
 
-# %% [markdown]
+
 # ### Execute the Graph feeding the NN with the batch-generator function:
 # - train the model running our train_op node at each epoch
 # - calculate the accuracy with valid dataset at each epoch
 # -  calculate the accuracy of the final NN with test dataset
 
-# %%
+
 valid_acc_values=[]
 
 with tf.Session(graph=graph1) as sess:
@@ -168,13 +159,13 @@ with tf.Session(graph=graph1) as sess:
         })
     print('test accuray 1-layer dense : {:.3f}'.format(test_acc))
 
-# %% [markdown]
+
 # - the test accuracy for a 1-layer dense NN is 0.9
-# %% [markdown]
+
 # ### create a 2-layer Dense NN :
 # - add a hidden layer to the previous nn graph
 
-# %%
+
 import tensorflow as tf
 
 graph2 = tf.Graph()
@@ -216,7 +207,7 @@ with graph2.as_default():
     accuracy = tf.reduce_mean(tf.cast(is_correct, dtype=tf.float32))
 
 
-# %%
+
 valid_acc_values=[]
 
 with tf.Session(graph=graph2) as sess:
@@ -261,10 +252,10 @@ with tf.Session(graph=graph2) as sess:
         })
     print('test accuray 2-layer dense : {:.3f}'.format(test_acc))
 
-# %% [markdown]
+
 # - the test accuracy for a 2-layers dense NN is 0.96
 
-# %%
+
 
 
 
