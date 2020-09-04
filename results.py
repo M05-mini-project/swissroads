@@ -1,28 +1,20 @@
-import database
-#import data_exploration
-#import baseline
-#import analysis
-
-database.load_data()
-
 import pandas as pd
-
-model_results = [{'model': 'logistic','test_accuracy': 0.94},
-                {'model': '1-layer nn','test_accuracy': 0.9},
-                {'model': '2-layer nn','test_accuracy': 0.96}]
-
-
-# Convert results to DataFrame
-model_results = pd.DataFrame(model_results)
-model_results
+from scripts import database
+from scripts import data_exploration
+from scripts import baseline
+from scripts import analysis
 
 
-import matplotlib.pyplot as plt
+### first load the dataset
+# the output of the function is the generation of a file called "images_data.npz" saved into the current execution folder
+# once done a first time, the next line can be cmmented for future executions"
+#database.load_data()  # <--- comment this line if data already loaded into "images_data.npz"
 
-plt.figure(figsize=(16,8))
-plt.bar(model_results.model, model_results.test_accuracy)
-plt.show()
+### second step to explore the different categories into our dataset
+df = data_exploration.main()
 
-# - The CNN is not performing that well as the previous algo. the amount of pictures to learn is quite low , 280 images for 6 classes. 
-#Moreover only 2 convolution layers were applied and one hidden layer on the connected layer which I guess is less than the CNN Mobilenet V2 to obtain the 1280 features.
+### third step to generate our baseline model
+baseline_acc_tr, baseline_acc_te = baseline.main(df)
 
+### fourth step to model Neural network
+nn_acc_tr, nn_acc_te = analysis.main(df, 10)

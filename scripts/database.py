@@ -5,21 +5,18 @@ import os
 import PIL.Image as Image
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 
+""" It is the first step to execute when reproducing the project.
+    The database.py script is ised to get the data from swissroads and the high level features from 
+    https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2
+    once retrieved, all the infornmation will be saved into a .npz file called images_data.npz """
+
+### Helper function to laod the provided image datsaet in "swissroads folder"
 def get_images():
-    """  1- Let's loop all the dataset folders *.png files to create features
-     - my idea is to create a unique npz file containing the 1280 features extrated from Mobilnet V2
-     - and add 3 columns with :
-         - image category (bike, car,...)
-         - image file name (xxx.png)
-         - image set (train, valid, test)
-
-     - parse all files into swissroads folder
-     - open the image with PIL and resize to the desired size for Mobilnet V2 ie 224x224, normalized between 0 and 1 """
-
-
+    """ - Let's loop all the dataset folders *.png files to create features
+        - parse all files into swissroads folder
+        - open the image with PIL and resize to the desired size for Mobilnet V2 ie 224x224, normalized between 0 and 1 """
 
     folders = ['test','train','valid']
     categories = ['bike', 'car', 'motorcycle','other','truck','van']
@@ -47,8 +44,7 @@ def get_images():
 
     return batches_data, batches_cat, batches_file, batches_folder
 
-
-
+### helper function to load the mobilnet trained features
 def load_data():
 
     """ The Helper function load_data performs 2 major operations:
@@ -104,9 +100,4 @@ def load_data():
     columns_name.append('imageFileName')
     columns_name.append('imageSet')
 
-    np.savez('images_data.npz', values=values, columns=columns_name)
-
-
-
-
-
+    np.savez('./output/images_data.npz', values=values, columns=columns_name)
