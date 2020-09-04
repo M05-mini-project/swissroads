@@ -42,8 +42,7 @@ def main():
             axis.get_yaxis().set_visible(False)
         
     plt.savefig('./output/images_display.png')
-    print('------------------------------------------------')
-    print('Images examples : check plot under./output/images_display.png')
+    print('     - Images examples : check plot under./output/images_display.png')
     
         
 
@@ -82,8 +81,7 @@ def main():
     plt.ylabel('2nd component')
     plt.savefig('./output/PCA.png')
 
-    print('------------------------------------------------')
-    print('PCA plot : check plot under./output/PCA.png')
+    print('     - PCA plot : check plot under./output/PCA.png')
     print('------------------------------------------------')
 
     return df

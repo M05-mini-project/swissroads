@@ -51,6 +51,8 @@ def load_data():
     - call get_images which import the image files
     - Create a TensorFlow graph to extract the features from Mobilenet V2 """
 
+    print('------------------------------------------------')
+    print(' LOAD DATABASE.....')
     # Create a TF graph
     img_graph = tf.Graph()
 
@@ -101,3 +103,5 @@ def load_data():
     columns_name.append('imageSet')
 
     np.savez('./output/images_data.npz', values=values, columns=columns_name)
+
+    print('------------------------------------------------')

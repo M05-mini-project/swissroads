@@ -8,7 +8,7 @@ from scripts import analysis
 ### first load the dataset
 # the output of the function is the generation of a file called "images_data.npz" saved into the current execution folder
 # once done a first time, the next line can be cmmented for future executions"
-#database.load_data()  # <--- comment this line if data already loaded into "images_data.npz"
+database.load_data()  # <--- comment this line if data already loaded into "images_data.npz"
 
 ### second step to explore the different categories into our dataset
 df = data_exploration.main()
