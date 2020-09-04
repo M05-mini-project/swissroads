@@ -1,9 +1,14 @@
+import os
 import pandas as pd
 from scripts import database
 from scripts import data_exploration
 from scripts import baseline
 from scripts import analysis
 
+### if does not exist create a folder output/
+output_path = r'./output' 
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
 
 ### first load the dataset
 # the output of the function is the generation of a file called "images_data.npz" saved into the current execution folder
