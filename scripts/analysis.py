@@ -117,8 +117,14 @@ def main(df, epochs = 15):
     # - train the model running our train_op node at each epoch
     # - calculate the accuracy with valid dataset at each epoch
     # -  calculate the accuracy of the final NN with test dataset
+
+    config = tf.ConfigProto(
+                        inter_op_parallelism_threads=1, 
+                        allow_soft_placement=True,
+                        device_count = {'CPU': 1})
+
     valid_acc_values=[]
-    with tf.Session(graph=graph) as sess:
+    with tf.Session(graph=graph, config=config) as sess:
         # Initialize variables
         sess.run(tf.global_variables_initializer())
 
