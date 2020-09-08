@@ -44,6 +44,11 @@ def get_images():
 
     return batches_data, batches_cat, batches_file, batches_folder
 
+# Function to get batches of data
+def get_batches(X,batch_size):
+    for i in range(0, len(X), batch_size):
+        yield X[i:i+batch_size]
+
 ### helper function to load the mobilnet trained features
 def load_data():
 
@@ -83,7 +88,15 @@ def load_data():
     batches_data, batches_cat, batches_file, batches_folder = get_images()
 
     # Extract features
-    features = sess.run(imgs_features, feed_dict={input_imgs: batches_data})
+    features = np.array([])
+    first_iter=True
+    for X_batch in get_batches(batches_data, 64):
+        features_acc = sess.run(imgs_features, feed_dict={input_imgs: X_batch})
+        if first_iter:
+            features = features_acc
+            first_iter=False
+        else:
+            features = np.concatenate((features,features_acc), axis=0 )
 
     # Append the 3 other features previously explained to the 1280 extracted features    
     values = np.append(features, np.array(batches_cat)[:,np.newaxis], axis=1)
