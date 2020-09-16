@@ -8,12 +8,13 @@ import pandas as pd
 
 
 """ It is the first step to execute when reproducing the project.
-    The database.py script is ised to get the data from swissroads and the high level features from 
-    https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2
+    The database.py script is used to get the data from :
+        - swissroads folder provided
+        - the high level features from  https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2
     once retrieved, all the infornmation will be saved into a .npz file called images_data.npz """
 
 ### Helper function to laod the provided image datsaet in "swissroads folder"
-def get_images():
+def get_images(folder_name):
     """ - Let's loop all the dataset folders *.png files to create features
         - parse all files into swissroads folder
         - open the image with PIL and resize to the desired size for Mobilnet V2 ie 224x224, normalized between 0 and 1 """
@@ -23,7 +24,7 @@ def get_images():
     images = []
     for folder in folders:
         for cat in categories:
-            images.append(glob.glob('{}/*.png'.format('./swissroads_images/' + folder + '/' + cat), recursive=True))
+            images.append(glob.glob('{}/*.png'.format('./' + folder_name + '/' + folder + '/' + cat), recursive=True))
 
     batches_data = []
     batches_cat = []
@@ -44,13 +45,18 @@ def get_images():
 
     return batches_data, batches_cat, batches_file, batches_folder
 
-# Function to get batches of data
+# Batch generator : Function to get batches of data
 def get_batches(X,batch_size):
+    """ input X : python list
+        input batch_size : unit
+        
+        output : return a batch of the site batch_size of X
+    """
     for i in range(0, len(X), batch_size):
         yield X[i:i+batch_size]
 
 ### helper function to load the mobilnet trained features
-def load_data():
+def load_data(folder_name):
 
     """ The Helper function load_data performs 2 major operations:
     - call get_images which import the image files
@@ -85,7 +91,7 @@ def load_data():
     sess.run(init_op)
 
     #get images 
-    batches_data, batches_cat, batches_file, batches_folder = get_images()
+    batches_data, batches_cat, batches_file, batches_folder = get_images(folder_name)
 
     # Extract features
     features = np.array([])
