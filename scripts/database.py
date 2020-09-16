@@ -89,14 +89,15 @@ def load_data():
 
     # Extract features
     features = np.array([])
-    first_iter=True
+    i = 0
     for X_batch in get_batches(batches_data, 64):
+        print("Get features from tfhub mobilenet_v2...batch ", i+1, '- images ', (i+1)*64, ' out of ',  len(batches_data))
         features_acc = sess.run(imgs_features, feed_dict={input_imgs: X_batch})
-        if first_iter:
-            features = features_acc
-            first_iter=False
+        if i == 0:
+            features = features_acc            
         else:
             features = np.concatenate((features,features_acc), axis=0 )
+        i += 1
 
     # Append the 3 other features previously explained to the 1280 extracted features    
     values = np.append(features, np.array(batches_cat)[:,np.newaxis], axis=1)
