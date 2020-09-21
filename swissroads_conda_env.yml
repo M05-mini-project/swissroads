@@ -12,3 +12,6 @@ dependencies:
   - tensorflow=1.12
   - tensorflow-hub=0.4.0
   - pillow=5.3
+  - nose
+  - coverage
+  - coveralls
