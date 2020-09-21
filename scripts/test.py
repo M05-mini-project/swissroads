@@ -1,6 +1,6 @@
 from baseline import cat2num
 
-def test_cat2num(input, expected):
+def function_cat2num(input, expected):
   output = cat2num(input)
   assert output == expected, 'Expected %r, but got %r' % (expected, cer)
 
