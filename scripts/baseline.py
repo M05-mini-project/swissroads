@@ -6,6 +6,21 @@ import PIL.Image as Image
 	
 pd.options.mode.chained_assignment = None 
 
+#### transform the categories into numerical values to be then used for logistic regression
+def cat2num(x):
+    if x == 'bike':
+        return 0
+    if x=='car':
+        return 1
+    if x =='motorcycle':
+        return 2
+    if x == 'other':
+        return 3
+    if x =='truck':
+        return 4
+    if x =='van':
+        return 5
+
 ### Goal:
 # A strong baseline to evaluate is logistic regression
 # 
@@ -26,20 +41,6 @@ def main(df):
     features_names=df_train.drop(['imageSet','category','imageFileName'], axis=1).columns
     categories = ['bike', 'car', 'motorcycle','other','truck','van']
 
-    #### transform the categories into numerical values to be then used for logistic regression
-    def cat2num(x):
-        if x == 'bike':
-            return 0
-        if x=='car':
-            return 1
-        if x =='motorcycle':
-            return 2
-        if x == 'other':
-            return 3
-        if x =='truck':
-            return 4
-        if x =='van':
-            return 5
     
     df_train['category_num'] = df_train['category'].apply(cat2num)
     df_test['category_num'] = df_test['category'].apply(cat2num)
