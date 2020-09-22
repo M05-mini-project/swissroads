@@ -21,4 +21,4 @@ df = data_exploration.main()
 baseline_acc_tr, baseline_acc_te = baseline.main(df)
 
 ### fourth step to model Neural network
-nn_acc_tr, nn_acc_te = analysis.main(df, 10)
+analysis.main(df, 10)
