@@ -1,5 +1,6 @@
 import numpy as np
 import collections
+import os
 
 import database
 import baseline
@@ -52,7 +53,7 @@ def test_getimage():
     assert counter['valid'] == valid_size, 'Expected %r, but got %r' % (train_size, counter['valid'])
 
 def test_get_batches():
-    list_lenght = 1300
+    list_lenght = 1300 #arbitrary number, can work with any int
     batch_size = 32
 
     test_list = np.arange(list_lenght)
@@ -65,3 +66,20 @@ def test_get_batches():
 
         assert len(batch)==expected_lengh, 'Expected %r, but got %r' % (expected_lengh, len(batch))
         assert batch[0] == test_list[id*batch_size], 'Expected %r, but got %r' % (test_list[id*batch_size], batch[0])
+
+def test_load_database():
+    output_path = r'./output' 
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+
+    folder_name = '../swissroads_images'
+    database.load_data(folder_name)
+
+    database_path = './output/images_data.npz'
+
+    assert os.path.isfile(database_path), 'File does not exist'
+
+    os.remove(database_path)
+    os.rmdir(output_path)
+
+test_load_database()
