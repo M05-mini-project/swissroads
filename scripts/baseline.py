@@ -3,6 +3,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import PIL.Image as Image
 
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.utils import shuffle
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import confusion_matrix
+
 	
 pd.options.mode.chained_assignment = None 
 
@@ -51,11 +58,6 @@ def main(df):
     # - let's create a pipeline with a first step as standscaler
     print('---------------------------------------------------')
     print('BASELINE : optimizing logistic regression model...')
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.pipeline import Pipeline
-    from sklearn.utils import shuffle
-    from sklearn.model_selection import GridSearchCV
 
     # shuffle the data
     X_tr_s, y_tr_s = shuffle(X_tr, y_tr, random_state=0)
@@ -85,8 +87,6 @@ def main(df):
     print('------------------------------------------------')
 
     #confusion matrix
-    from sklearn.metrics import confusion_matrix
-
     cm =confusion_matrix(y_te, grid_cv.predict(X_te), labels=[0,1,2,3,4,5])
     df_res = pd.DataFrame(cm, columns=['bike','car','motorcycle','other','truck','van'])
     df_res['label'] = ['bike','car','motorcycle','other','truck','van']
