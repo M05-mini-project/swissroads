@@ -97,7 +97,10 @@ def load_data(folder_name):
     features = np.array([])
     i = 0
     for X_batch in get_batches(batches_data, 64):
-        print("Get features from tfhub mobilenet_v2...batch ", i+1, '- images ', (i+1)*64, ' out of ',  len(batches_data))
+        images_count = (i+1)*64
+        if images_count>len(batches_data):
+            images_count = len(batches_data)
+        print("Get features from tfhub mobilenet_v2...batch ", i+1, '- images ', images_count, ' out of ',  len(batches_data))
         features_acc = sess.run(imgs_features, feed_dict={input_imgs: X_batch})
         if i == 0:
             features = features_acc            
