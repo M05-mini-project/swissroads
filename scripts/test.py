@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import collections
 import os
 
@@ -18,6 +19,9 @@ def test_cat2num_2():
 
 
 # database tests
+TEST_SIZE = 50
+TRAIN_SIZE = 280
+VALID_SIZE = 139
 
 def test_getimage_wrongFolder():
     batches_data, batches_cat, batches_file, batches_folder = database.get_images('../fake_folder')
@@ -42,15 +46,11 @@ def test_getimage():
         assert batches_cat[i] in batches_file[i], 'Expected to contain %r, but got %r' % (batches_cat[i], batches_file[i])
 
     #batches_folder size
-    test_size = 50
-    train_size = 280
-    valid_size = 139
-
     counter = collections.Counter(batches_folder)
 
-    assert counter['test'] == test_size, 'Expected %r, but got %r' % (train_size, counter['test'])
-    assert counter['train'] == train_size, 'Expected %r, but got %r' % (train_size, counter['train'])
-    assert counter['valid'] == valid_size, 'Expected %r, but got %r' % (train_size, counter['valid'])
+    assert counter['test'] == TEST_SIZE, 'Expected %r, but got %r' % (TEST_SIZE, counter['test'])
+    assert counter['train'] == TRAIN_SIZE, 'Expected %r, but got %r' % (TRAIN_SIZE, counter['train'])
+    assert counter['valid'] == VALID_SIZE, 'Expected %r, but got %r' % (VALID_SIZE, counter['valid'])
 
 def test_get_batches():
     list_lenght = 1300 #arbitrary number, can work with any int
@@ -68,6 +68,7 @@ def test_get_batches():
         assert batch[0] == test_list[id*batch_size], 'Expected %r, but got %r' % (test_list[id*batch_size], batch[0])
 
 def test_load_database():
+    #create local folder
     output_path = r'./output' 
     if not os.path.exists(output_path):
         os.makedirs(output_path)
@@ -77,8 +78,29 @@ def test_load_database():
 
     database_path = './output/images_data.npz'
 
-    assert os.path.isfile(database_path), 'File does not exist'
+    assert os.path.isfile(database_path), 'File %r does not exist' %(database_path)
 
+    #assert generated content
+    with np.load('./output/images_data.npz', allow_pickle=True) as npz_file:
+        df = pd.DataFrame(npz_file['values'], columns= npz_file['columns'])
+    df_test = df[df['imageSet'] == 'test']
+    df_train = df[df['imageSet'] == 'train']
+    df_valid = df[df['imageSet'] == 'valid']
+
+    assert len(df_test) == TEST_SIZE, 'Expected %r, but got %r' % (TEST_SIZE, len(df_test))
+    assert len(df_train) == TRAIN_SIZE, 'Expected %r, but got %r' % (TRAIN_SIZE, len(df_train))
+    assert len(df_valid) == VALID_SIZE, 'Expected %r, but got %r' % (VALID_SIZE, len(df_valid))
+
+    categories = ['bike', 'car', 'motorcycle','other','truck','van']
+
+    for category in categories:
+        path = '../swissroads_images/test/' + category
+        list = os.listdir(path)
+
+        df_categories = df_test[df_test['category'] == category]
+        assert len(df_categories) == len(list), 'Expected %r files, but got %r' % (len(list), len(df_categories))
+
+    #delete local folder
     os.remove(database_path)
     os.rmdir(output_path)
 
