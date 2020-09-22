@@ -103,5 +103,3 @@ def test_load_database():
     #delete local folder
     os.remove(database_path)
     os.rmdir(output_path)
-
-test_load_database()
