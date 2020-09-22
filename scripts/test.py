@@ -1,7 +1,8 @@
+import numpy as np
+import collections
+
 import database
 import baseline
-
-import collections
 
 # baseline tests
 def function_cat2num(input, expected):
@@ -50,4 +51,17 @@ def test_getimage():
     assert counter['train'] == train_size, 'Expected %r, but got %r' % (train_size, counter['train'])
     assert counter['valid'] == valid_size, 'Expected %r, but got %r' % (train_size, counter['valid'])
 
-test_getimage()
+def test_get_batches():
+    list_lenght = 1300
+    batch_size = 32
+
+    test_list = np.arange(list_lenght)
+
+    expected_lengh = batch_size
+
+    for id, batch in enumerate(database.get_batches(test_list, batch_size)):
+        if id == int(list_lenght/batch_size):
+            expected_lengh = list_lenght%batch_size
+
+        assert len(batch)==expected_lengh, 'Expected %r, but got %r' % (expected_lengh, len(batch))
+        assert batch[0] == test_list[id*batch_size], 'Expected %r, but got %r' % (test_list[id*batch_size], batch[0])
