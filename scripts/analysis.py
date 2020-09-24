@@ -134,8 +134,8 @@ def create_execute_TF_graph(epochs, X_tr, X_te, X_va, y_tr, y_te, y_va):
      
 def get_confusion_matrix(y_te, y_values, labels):
     cm =confusion_matrix(y_te, y_values, labels=labels)
-    df_res = pd.DataFrame(cm, columns=['bike','car','motorcycle','other','truck','van'])
-    df_res['label'] = ['bike','car','motorcycle','other','truck','van']
+    df_res = pd.DataFrame(cm, columns=labels)
+    df_res['label'] = labels
     df_res.set_index('label', inplace=True)
 
     return df_res
@@ -165,7 +165,7 @@ def main(df, epochs = 15):
     print('------------------------------------------------')
 
     #confusion matrix 
-    labels=[0,1,2,3,4,5]
+    labels=['bike','car','motorcycle','other','truck','van']
     df_res = get_confusion_matrix(y_te, y_te_predict, labels)
 
     print('NN confusion matrix:')
