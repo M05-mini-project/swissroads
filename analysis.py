@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import PIL.Image as Image
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
-from scripts import baseline
+import baseline
 
 
 # to prevent warnings from pandas when slicing dataframe
@@ -144,8 +144,8 @@ def create_execute_TF_graph(epochs, X_tr, X_te, X_va, y_tr, y_te, y_va):
     return train_acc, test_acc, y_te_predict
 
 
-def get_confusion_matrix(y_te, y_values, labels):
-    cm = confusion_matrix(y_te, y_values, labels=labels)
+def get_confusion_matrix(y_te, y_values, vals, labels):
+    cm = confusion_matrix(y_te, y_values, labels=vals)
     df_res = pd.DataFrame(cm, columns=labels)
     df_res["label"] = labels
     df_res.set_index("label", inplace=True)
@@ -181,7 +181,7 @@ def main(df, epochs=15):
 
     # confusion matrix
     labels = ["bike", "car", "motorcycle", "other", "truck", "van"]
-    df_res = get_confusion_matrix(y_te, y_te_predict, labels)
+    df_res = get_confusion_matrix(y_te, y_te_predict, [0, 1, 2, 3, 4, 5], labels)
 
     print("NN confusion matrix:")
     print(df_res)

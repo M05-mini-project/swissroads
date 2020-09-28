@@ -7,6 +7,25 @@ from sklearn.preprocessing import StandardScaler
 
 
 def plot_images(df_test, categories):
+    """The plot_images function allow to explore the data through plots.
+
+    This function aims at plotting exemples images of each category. 
+    The function takes 2 parameters as input and return True is all runs ok:
+
+    Parameters
+    ----------
+    df_test : Pandas DataFrame
+        The pandas DataFrame containing the data.
+    categories : Python list 
+        This second parameter is a python list containing the data categories.
+
+    Returns
+    -------
+    bool
+        True if successful, False otherwise.
+    """
+    bl = False
+
     # Create a grid of subplots
     fig, axes = plt.subplots(nrows=6, ncols=3)
 
@@ -25,8 +44,32 @@ def plot_images(df_test, categories):
 
     plt.savefig("./output/images_display.png")
 
+    bl = True
+
+    return bl
+
 
 def apply_PCA(df, categories):
+
+    """The apply_PCA function allow to explore the data through plots.
+
+    This function aims at plotting exemples images of each category. 
+    The function takes 2 parameters as input and return True is all runs ok:
+
+    Parameters
+    ----------
+    df_test : Pandas DataFrame
+        The pandas DataFrame containing the data.
+    categories : Python list 
+        This second parameter is a python list containing the data categories.
+
+    Returns
+    -------
+    bool
+        True if successful, False otherwise.
+    """
+
+    ok = False
 
     df_train = df[df["imageSet"] == "train"]
     X_tr = (
@@ -55,6 +98,10 @@ def apply_PCA(df, categories):
     plt.xlabel("1st component")
     plt.ylabel("2nd component")
     plt.savefig("./output/PCA.png")
+
+    ok = True
+
+    return ok
 
 
 def main():
