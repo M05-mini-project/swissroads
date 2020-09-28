@@ -85,10 +85,7 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Python API</a><ul>
-<li><a class="reference internal" href="#module-data_exploration">Data Exploration</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Python API</a></li>
 </ul>
 </div>
             
@@ -153,11 +150,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="python-api">
-<h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-data_exploration">
-<span id="data-exploration"></span><h2>Data Exploration<a class="headerlink" href="#module-data_exploration" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
+  <div class="section" id="module-analysis">
+<span id="python-api"></span><h1>Python API<a class="headerlink" href="#module-analysis" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-baseline"></span><span class="target" id="module-data_exploration"></span><dl class="py function">
 <dt id="data_exploration.plot_images">
 <code class="sig-prename descclassname">data_exploration.</code><code class="sig-name descname">plot_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_test</span></em>, <em class="sig-param"><span class="n">categories</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_exploration.html#plot_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_exploration.plot_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>The plot_images function allow to explore the data through plots.</p>
@@ -201,7 +196,32 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 </dl>
 </dd></dl>
 
-</div>
+<span class="target" id="module-database"></span><dl class="py function">
+<dt id="database.get_images">
+<code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/database.html#get_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#database.get_images" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>Let’s loop all the dataset folders <a href="#id1"><span class="problematic" id="id2">*</span></a>.png files to create features</p></li>
+<li><p>parse all files into swissroads folder</p></li>
+<li><p>open the image with PIL and resize to the desired size for Mobilnet V2 ie 224x224, normalized between 0 and 1</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt id="database.get_batches">
+<code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_batches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">batch_size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/database.html#get_batches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#database.get_batches" title="Permalink to this definition">¶</a></dt>
+<dd><p>input X : python list
+input batch_size : unit</p>
+<p>output : return a batch of the site batch_size of X</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="database.load_data">
+<code class="sig-prename descclassname">database.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/database.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#database.load_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Helper function load_data performs 2 major operations:
+- call get_images which import the image files
+- Create a TensorFlow graph to extract the features from Mobilenet V2</p>
+</dd></dl>
+
 </div>
 
 
