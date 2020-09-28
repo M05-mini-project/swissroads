@@ -11,7 +11,26 @@ install:
   - conda info -a
   - conda env create -f swissroads_conda_env.yml
   - conda activate swissroads_conda_env
+  - conda install sphinx sphinx_rtd_theme
 
 script:
-  - nosetests -sv --with-coverage --cover-package=. scripts/test.py
-  - coveralls
+  # Run CI steps
+  - nosetests -sv --with-coverage --cover-package=. test.py
+  #- sphinx-build -b doctest doc sphinx
+
+  # Build docs
+  - sphinx-build doc sphinx
+  - touch sphinx/.nojekyll
+  - coveralls #uploads coverage report to coveralls.io
+
+deploy:
+  - provider: pages:git
+    verbose: true
+    edge: true
+    token: $GITHUB_TOKEN
+    local_dir: ./sphinx/
+    on:
+      branch: master
+      condition: $TRAVIS_PYTHON_VERSION = 3.7
+
+

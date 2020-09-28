@@ -6,6 +6,12 @@ import PIL.Image as Image
 import numpy as np
 import pandas as pd
 
+"""
+Data set from EPFL Extension School https://www.extensionschool.ch/ 
+permission to use given by the EPFL Extension School to Christophe Hoël for the completion of this image recognition exercise
+within the course M05 from AI master at Idiap." 
+"""
+
 
 """ It is the first step to execute when reproducing the project.
     The database.py script is used to get the data from :
