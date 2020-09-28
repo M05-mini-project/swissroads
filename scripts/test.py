@@ -4,19 +4,8 @@ import collections
 import os
 
 import database
+import data_exploration
 import baseline
-
-# baseline tests
-def function_cat2num(input, expected):
-  output = baseline.cat2num(input)
-  assert output == expected, 'Expected %r, but got %r' % (expected, output)
-
-def test_cat2num_1():
-  function_cat2num('bike', 0)
-
-def test_cat2num_2():
-  function_cat2num('other', 3)
-
 
 # database tests
 TEST_SIZE = 50
@@ -24,7 +13,7 @@ TRAIN_SIZE = 280
 VALID_SIZE = 139
 
 def test_getimage_wrongFolder():
-    batches_data, batches_cat, batches_file, batches_folder = database.get_images('../fake_folder')
+    batches_data, batches_cat, batches_file, batches_folder = database.get_images('fake_folder')
 
     assert batches_data == [], 'Expected %r, but got %r' % ([], batches_data)
     assert batches_cat == [], 'Expected %r, but got %r' % ([], batches_cat)
@@ -32,7 +21,7 @@ def test_getimage_wrongFolder():
     assert batches_folder == [], 'Expected %r, but got %r' % ([], batches_folder)
 
 def test_getimage():
-    batches_data, batches_cat, batches_file, batches_folder = database.get_images('../swissroads_images')
+    batches_data, batches_cat, batches_file, batches_folder = database.get_images('swissroads_images')
 
     #batches lenght
     data_lenght = 469
@@ -53,7 +42,7 @@ def test_getimage():
     assert counter['valid'] == VALID_SIZE, 'Expected %r, but got %r' % (VALID_SIZE, counter['valid'])
 
 def test_get_batches():
-    list_lenght = 1300 #arbitrary number, can work with any int
+    list_lenght = 1357 #arbitrary number, can work with any int
     batch_size = 32
 
     test_list = np.arange(list_lenght)
@@ -73,7 +62,7 @@ def test_load_database():
     if not os.path.exists(output_path):
         os.makedirs(output_path)
 
-    folder_name = '../swissroads_images'
+    folder_name = './swissroads_images'
     database.load_data(folder_name)
 
     database_path = './output/images_data.npz'
@@ -94,7 +83,7 @@ def test_load_database():
     categories = ['bike', 'car', 'motorcycle','other','truck','van']
 
     for category in categories:
-        path = '../swissroads_images/test/' + category
+        path = './swissroads_images/test/' + category
         list = os.listdir(path)
 
         df_categories = df_test[df_test['category'] == category]
@@ -102,4 +91,31 @@ def test_load_database():
 
     #delete local folder
     os.remove(database_path)
+    os.rmdir(output_path)
+
+
+# baseline tests
+def function_cat2num(input, expected):
+  output = baseline.cat2num(input)
+  assert output == expected, 'Expected %r, but got %r' % (expected, output)
+
+def test_cat2num_1():
+  function_cat2num('bike', 0)
+
+def test_cat2num_2():
+  function_cat2num('other', 3)
+
+def test_baseline_accuracy():
+    output_path = r'./output' 
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+    database.load_data('swissroads_images')
+    with np.load('./output/images_data.npz', allow_pickle=True) as npz_file:
+        df = pd.DataFrame(npz_file['values'], columns= npz_file['columns'])
+
+    baseline_acc_tr, baseline_acc_te = baseline.main(df)
+    assert baseline_acc_tr == 1.0, 'Expected %r, but got %r' % (1.0, baseline_acc_tr)
+    assert baseline_acc_te >= 0.9, 'Expected more than %r, but got %r' % (0.9, baseline_acc_te)
+
+    os.remove('./output/images_data.npz')
     os.rmdir(output_path)
