@@ -10,8 +10,8 @@ install:
   - conda update -q conda
   - conda info -a
   - conda env create -f swissroads_conda_env.yml
-  - conda install sphinx sphinx_rtd_theme
   - conda activate swissroads_conda_env
+  - conda install sphinx sphinx_rtd_theme
 
 script:
   # Run CI steps
