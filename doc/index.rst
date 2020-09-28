@@ -10,9 +10,6 @@ Welcome to SwissRoads : transfer learning's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   scripts\database
-   script\data_exploration
-
 
 Indices and tables
 ==================
