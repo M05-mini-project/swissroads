@@ -5,9 +5,15 @@
  Python API
 ============
 
-Data Exploration
------------------
+.. automodule:: analysis
+   :members:
+
+.. automodule:: baseline
+   :members:
 
 .. automodule:: data_exploration
+   :members:
+
+.. automodule:: database
    :members:
 
