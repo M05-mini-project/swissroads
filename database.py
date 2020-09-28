@@ -12,18 +12,26 @@ permission to use given by the EPFL Extension School to Christophe Hoël for the
 within the course M05 from AI master at Idiap." 
 """
 
-
-""" It is the first step to execute when reproducing the project.
-    The database.py script is used to get the data from :
-        - swissroads folder provided
-        - the high level features from  https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2
-    once retrieved, all the infornmation will be saved into a .npz file called images_data.npz """
-
-### Helper function to laod the provided image datsaet in "swissroads folder"
 def get_images(folder_name):
-    """ - Let's loop all the dataset folders *.png files to create features
-        - parse all files into swissroads folder
-        - open the image with PIL and resize to the desired size for Mobilnet V2 ie 224x224, normalized between 0 and 1 """
+    """ 
+    Recursively read all folder content, open all images with PIL and create array containing images data.
+
+    Parameters
+    ----------
+    folder_name : string
+        name of the folder containing the images
+
+    Returns:
+    ----------
+    batches_data : array
+        Nx(224x224) array containing resized images in a normalized float32 format
+    batches_cat : array
+        Nx1 array containing the category of each sample as string
+    batches_file : array
+        Nx1 array containing the file path of the image sample
+    batches_folder : array
+        Nx1 array containing the folder type, can either be 'test', 'train' or 'valid'
+    """
 
     folders = ['test','train','valid']
     categories = ['bike', 'car', 'motorcycle','other','truck','van']
@@ -51,54 +59,55 @@ def get_images(folder_name):
 
     return batches_data, batches_cat, batches_file, batches_folder
 
-# Batch generator : Function to get batches of data
 def get_batches(X,batch_size):
-    """ input X : python list
-        input batch_size : unit
-        
-        output : return a batch of the site batch_size of X
+    """ 
+    Split a list into batches of a given size and yield them one by one.
+
+    Parameters
+    ----------
+    X : list
+        List of any kind to be split
+    batch_size : int
+        The size of each generated batches
+
+    Returns:
+    ----------
+    batch : list
+        a batch of size batch_size, the last batch yielded may not be of this size depending on the lenght of the X input
     """
     for i in range(0, len(X), batch_size):
         yield X[i:i+batch_size]
 
 ### helper function to load the mobilnet trained features
 def load_data(folder_name):
+    """ 
+    Get the images present in a given folder, create a database from it and save it in a .npz file.
 
-    """ The Helper function load_data performs 2 major operations:
-    - call get_images which import the image files
-    - Create a TensorFlow graph to extract the features from Mobilenet V2 """
+    A 'output' folder must exist for the database to be saved.
+
+    Parameters
+    ----------
+    folder_name : string
+        name of the folder containing the images
+    """
 
     print('------------------------------------------------')
     print(' LOAD DATABASE.....')
-    # Create a TF graph
     img_graph = tf.Graph()
 
     with img_graph.as_default():
-        # Download the mobilnet_v2 module
         module_url = 'https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2'
         feature_extractor = hub.Module(module_url)
-
-        # Create input placeholder
         input_imgs = tf.placeholder(dtype=tf.float32, shape=[None, 224, 224, 3])
-
-        # Create a node with the features of the input image
         imgs_features = feature_extractor(input_imgs)
-
-        # Collect initializers
         init_op = tf.group([tf.global_variables_initializer(), tf.tables_initializer()])
         
     img_graph.finalize()
 
-    # Run the Tensor Flow Graph to textract the features
-    # Create a TF session
     sess = tf.Session(graph=img_graph)
-
-    # Initialize it
     sess.run(init_op)
 
-    #get images 
     batches_data, batches_cat, batches_file, batches_folder = get_images(folder_name)
-
     # Extract features
     features = np.array([])
     i = 0
@@ -114,15 +123,12 @@ def load_data(folder_name):
             features = np.concatenate((features,features_acc), axis=0 )
         i += 1
 
-    # Append the 3 other features previously explained to the 1280 extracted features    
+    # Append the 3 other features to the 1280 extracted features    
     values = np.append(features, np.array(batches_cat)[:,np.newaxis], axis=1)
     values = np.append(values, np.array(batches_file)[:,np.newaxis], axis=1)
     values = np.append(values, np.array(batches_folder)[:,np.newaxis], axis=1)
-
-    # - We finally have a 469 images with 1280 high level features extracted from Mobilnet v2 each
-    # - added 3 features to recover easily the category of the image, the file source and the dataset
     
-    # Finally Save the data into a npz file
+    # Save the data into a npz file
     columns_name = []
     for i in range(features.shape[1]):
         columns_name.append('feature_' + str(i))
