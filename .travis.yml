@@ -15,7 +15,7 @@ install:
 
 script:
   # Run CI steps
-  - nosetests -sv --with-coverage --cover-package=. scripts/test.py
+  - nosetests -sv --with-coverage --cover-package=. test.py
   #- sphinx-build -b doctest doc sphinx
 
   # Build docs

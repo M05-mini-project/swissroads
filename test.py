@@ -67,7 +67,7 @@ def test_get_confusion_matrix_1():
     y_true = ["cat", "ant", "cat", "cat", "ant", "bird"]
     y_pred = ["ant", "ant", "cat", "cat", "ant", "cat"]
     labels = ["ant", "bird", "cat"]
-    df = analysis.get_confusion_matrix(y_true, y_pred, labels)
+    df = analysis.get_confusion_matrix(y_true, y_pred, labels, labels)
     expected_res = np.array([[2, 0, 0], [0, 0, 1], [1, 0, 2]])
 
     assert (df.values == expected_res).all(), "Expected %r, but got %r" % (
