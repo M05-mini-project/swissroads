@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
   
   
 
@@ -53,6 +55,9 @@
           
 
           
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
           </a>
 
           
@@ -84,6 +89,9 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../userguide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html">Troubleshooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
@@ -164,9 +172,9 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    df_test : Pandas DataFrame</span>
+<span class="sd">    df_test : pandas.DataFrame</span>
 <span class="sd">        The pandas DataFrame containing the data.</span>
-<span class="sd">    categories : Python list </span>
+<span class="sd">    categories : list </span>
 <span class="sd">        This second parameter is a python list containing the data categories.</span>
 
 <span class="sd">    Returns</span>
@@ -208,7 +216,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    df_test : Pandas DataFrame</span>
+<span class="sd">    df_test : pandas.DataFrame</span>
 <span class="sd">        The pandas DataFrame containing the data.</span>
 <span class="sd">    categories : Python list </span>
 <span class="sd">        This second parameter is a python list containing the data categories.</span>
@@ -254,7 +262,16 @@
     <span class="k">return</span> <span class="n">ok</span></div>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../api.html#data_exploration.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;The main() function is the main function to be launched to get the dataset</span>
+<span class="sd">    stored into a pandas DataFrame.</span>
+<span class="sd">    It reads all the image files from the folder named &quot;swissroads_images&quot;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Pandas DataFrame containing the images data and downloaded features from Tensorflow hub.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; DATA EXPLORATION&quot;</span><span class="p">)</span>
@@ -281,7 +298,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     - PCA plot : check plot under./output/PCA.png&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;------------------------------------------------&quot;</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">df</span>
+    <span class="k">return</span> <span class="n">df</span></div>
 </pre></div>
 
            </div>

@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>User Guide &mdash; Swissroads 1.0.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Swissroads
+          
+
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-dataset">The dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-exploration">Data Exploration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results-for-baseline">Results for baseline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results-for-tensorflow-2-layers-neural-network">Results for tensorflow 2-layers Neural network:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Swissroads</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>User Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/userguide.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-guide">
+<span id="swissroads-iris-userguide"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide explains how to use this package and obtain results published in our
+paper.  Results can be re-generated automatically by executing the following
+command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>swissroads_conda_env<span class="o">)</span> $ python results.py
+</pre></div>
+</div>
+<p>For your reference, the result tables are repeated below, so you can check the
+reproducibility of our solution.</p>
+<div class="section" id="the-dataset">
+<h2>The dataset<a class="headerlink" href="#the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>The original provided “Swissroads” data set is provided by  - EPFL Extension School.
+It is composed of 469 images in format .png file 256x256 pixels.
+It contains images of bike,car,motorcycle,truck,van and other categories.
+The dataset is already splitted into train/test and Valid sets.</p>
+<p>Below an example of image containing a car to be recognized as a car by our program.</p>
+<a class="reference internal image-reference" href="_images/car.png"><img alt="Example of a car in image" src="_images/car.png" style="width: 400px;" /></a>
+</div>
+<div class="section" id="data-exploration">
+<h2>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this headline">¶</a></h2>
+<p>Below a picture containing all categories of objects in the images dataset:</p>
+<a class="reference internal image-reference" href="_images/images_display.png"><img alt="Example of a car in image" src="_images/images_display.png" style="width: 400px;" /></a>
+<p>The below picture contains a plot obtained running the function data_exploration.apply_PCA()</p>
+<a class="reference internal image-reference" href="_images/PCA.png"><img alt="Example of a car in image" src="_images/PCA.png" style="width: 400px;" /></a>
+</div>
+<div class="section" id="results-for-baseline">
+<h2>Results for baseline<a class="headerlink" href="#results-for-baseline" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>baseline - logistic regression :</dt><dd><p>train accuracy :  1.0
+test accuracy :  0.94</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Baseline confusion matrix:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 17%" />
+<col style="width: 11%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>label</p></th>
+<th class="head"><p>bike</p></th>
+<th class="head"><p>car</p></th>
+<th class="head"><p>motorcycle</p></th>
+<th class="head"><p>other</p></th>
+<th class="head"><p>truck</p></th>
+<th class="head"><p>van</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bike</p></td>
+<td><p><strong>12</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>car</p></td>
+<td><p>0</p></td>
+<td><p><strong>11</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>motorcycle</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p><strong>9</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>other</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p><strong>6</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>truck</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>2</p></td>
+<td><p><strong>5</strong></p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>van</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p><strong>4</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="results-for-tensorflow-2-layers-neural-network">
+<h2>Results for tensorflow 2-layers Neural network:<a class="headerlink" href="#results-for-tensorflow-2-layers-neural-network" title="Permalink to this headline">¶</a></h2>
+<p>Neural network model :
+train accuray 2-layer dense : 0.979
+test accuray 2-layer dense : 0.960</p>
+<p>NN confusion matrix:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 17%" />
+<col style="width: 11%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>label</p></th>
+<th class="head"><p>bike</p></th>
+<th class="head"><p>car</p></th>
+<th class="head"><p>motorcycle</p></th>
+<th class="head"><p>other</p></th>
+<th class="head"><p>truck</p></th>
+<th class="head"><p>van</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bike</p></td>
+<td><p><strong>12</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>car</p></td>
+<td><p>0</p></td>
+<td><p><strong>10</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>motorcycle</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p><strong>9</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>other</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p><strong>6</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>truck</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p><strong>7</strong></p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>van</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p><strong>4</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Idiap Research Institute
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
