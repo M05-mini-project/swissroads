@@ -14,9 +14,9 @@ def plot_images(df_test, categories):
 
     Parameters
     ----------
-    df_test : Pandas DataFrame
+    df_test : pandas.DataFrame
         The pandas DataFrame containing the data.
-    categories : Python list 
+    categories : list 
         This second parameter is a python list containing the data categories.
 
     Returns
@@ -58,7 +58,7 @@ def apply_PCA(df, categories):
 
     Parameters
     ----------
-    df_test : Pandas DataFrame
+    df_test : pandas.DataFrame
         The pandas DataFrame containing the data.
     categories : Python list 
         This second parameter is a python list containing the data categories.
@@ -105,6 +105,15 @@ def apply_PCA(df, categories):
 
 
 def main():
+    """The main() function is the main function to be launched to get the dataset
+    stored into a pandas DataFrame.
+    It reads all the image files from the folder named "swissroads_images".
+
+    Returns
+    -------
+    pandas.DataFrame
+        Pandas DataFrame containing the images data and downloaded features from Tensorflow hub.
+    """
 
     print("------------------------------------------------")
     print(" DATA EXPLORATION")
