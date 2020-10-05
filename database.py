@@ -21,8 +21,8 @@ def get_images(folder_name):
     folder_name : string
         name of the folder containing the images
 
-    Returns:
-    ----------
+    Returns
+    -------
     batches_data : array
         Nx(224x224) array containing resized images in a normalized float32 format
     batches_cat : array
@@ -70,8 +70,8 @@ def get_batches(X,batch_size):
     batch_size : int
         The size of each generated batches
 
-    Returns:
-    ----------
+    Returns
+    -------
     batch : list
         a batch of size batch_size, the last batch yielded may not be of this size depending on the lenght of the X input
     """
