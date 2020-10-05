@@ -12,6 +12,27 @@ pd.options.mode.chained_assignment = None
 
 
 def create_data_sets(df):
+
+    """The create_data_sets function splits the whole swissroads dataset into 3 main parts:
+    train, test and valid.
+    The train part is used to train the model.
+    The test part is used to test the model during the training phase.
+    The valid part is used to validate finally our model.
+
+    This function aims at plotting exemples images of each category. 
+    The function takes 2 parameters as input and return True is all runs ok:
+
+    Parameters
+    ----------
+    df_test : pandas.DataFrame
+        The pandas DataFrame containing the data.
+
+    Returns
+    -------
+    numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray, numpy.ndarray
+        The numpy arrays corrisponds to X_tr, y_tr, X_te, y_te, X_va, y_va.
+    """
+
     df_train = df[df["imageSet"] == "train"]
     X_tr = df_train.drop(["imageSet", "category", "imageFileName"], axis=1).values
 
@@ -37,6 +58,25 @@ def create_data_sets(df):
 
 
 def get_batches(X, y, batch_size):
+
+    """ 
+    Split a list into batches of a given size and yield them one by one.
+
+    Parameters
+    ----------
+    X : numpy.ndarray
+    y : numpy.ndarray
+        must be the same length of X.
+
+    batch_size : int
+        The size of each generated batches
+
+    Returns:
+    ----------
+    batch : numpy.ndarray, numpy.ndarray
+        a Y,y batch of size batch_size, the last batch yielded may not be of this size depending on the length of the X input
+    """
+
     shuffled_idx = np.arange(len(y))
     np.random.shuffle(shuffled_idx)
 
@@ -46,6 +86,39 @@ def get_batches(X, y, batch_size):
 
 
 def create_execute_TF_graph(epochs, X_tr, X_te, X_va, y_tr, y_te, y_va):
+
+    """ 
+    The function create_execute_TF_graph is the function in charge of creating a tensorflow graph
+    to be then called by the function analysis.main() and be trained.
+
+    Parameters
+    ----------
+    epochs: int
+        Number of epochs to be then applied by tensorflow to train the model.
+    X_tr: numpy.ndarray
+        Numpy array containing the features to train the model.
+    X_te: numpy.ndarray
+        Numpy array containing the features to test the model.
+    X_va: numpy.ndarray
+        Numpy array containing the features to validate the model.
+    y_tr: numpy.ndarray
+        Numpy array containing the output vector to train the model.
+    y_te: numpy.ndarray
+        Numpy array containing the output vector to test the model.
+    y_va: numpy.ndarray
+        Numpy array containing the output vector to validate the model.
+
+
+    Returns:
+    ----------
+    train_acc: float
+        Float containing the train accuracy.
+    test_acc: float
+        Float containing the test accuracy.
+    y_te_predict: numpy.ndarray
+        Numpy array containing the output vector of the predictions from the test features.
+    """
+
     # ### create a one layer dense network graph using tensorflow:
     # - Create the placeholders for X and y
     # - Create an output layer using tf.layers.dense
@@ -145,6 +218,26 @@ def create_execute_TF_graph(epochs, X_tr, X_te, X_va, y_tr, y_te, y_va):
 
 
 def get_confusion_matrix(y_te, y_values, vals, labels):
+
+    """ 
+    Function returning the confusion matrix based on input data.
+
+    Parameters
+    ----------
+    y_te : numpy.ndarray
+        numpy array containing the model values.
+    y_values : numpy.ndarray
+        numpy array containing the real values.
+    vals : list
+        List of labels to create the confusion matrix.
+    labels : list
+        List of labels to be used in the output DataFrame.
+
+    Returns:
+    ----------
+    df_res : pandas.DataFrame
+        Pandas DataFrame containing the confusion matrix to be displayed.
+    """
     cm = confusion_matrix(y_te, y_values, labels=vals)
     df_res = pd.DataFrame(cm, columns=labels)
     df_res["label"] = labels
@@ -155,6 +248,24 @@ def get_confusion_matrix(y_te, y_values, vals, labels):
 
 # main function to be called by the script results.py to execute the claasification with NN
 def main(df, epochs=15):
+
+    """The main() function is the main function to execute the Neural network modelling phase
+    from the swissroads dataset.
+    It reads all the image files from the folder named "swissroads_images" and trains a 2 layer NN.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        Pandas DataFrame containing the input Data.
+    epochs : int
+        number of epoches for the Nueral Network training phase.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Pandas DataFrame containing the images data and downloaded features from Tensorflow hub.
+    """
+
     ### first create train/test and valid datasets from swissroads data
     X_tr, y_tr, X_te, y_te, X_va, y_va = create_data_sets(df)
 

@@ -23,13 +23,13 @@ def get_images(folder_name):
 
     Returns:
     ----------
-    batches_data : array
+    batches_data : numpy.ndarray
         Nx(224x224) array containing resized images in a normalized float32 format
-    batches_cat : array
+    batches_cat : numpy.ndarray
         Nx1 array containing the category of each sample as string
-    batches_file : array
+    batches_file : numpy.ndarray
         Nx1 array containing the file path of the image sample
-    batches_folder : array
+    batches_folder : numpy.ndarray
         Nx1 array containing the folder type, can either be 'test', 'train' or 'valid'
     """
 

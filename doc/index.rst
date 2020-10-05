@@ -16,6 +16,9 @@ This section to describe the project briefly
 Documentation
 -------------
 .. toctree::
+   installation
+   userguide
+   troubleshooting
    api
 
 
@@ -25,3 +28,5 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. include:: links.rst
