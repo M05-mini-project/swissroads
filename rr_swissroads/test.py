@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import collections
 import os
+import shutil
 
 from . import database, data_exploration, baseline, analysis
 
@@ -146,8 +147,9 @@ def test_load_database():
         )
 
     # delete local folder
-    os.remove(database_path)
-    os.rmdir(output_path)
+    # os.remove(database_path)
+    # os.rmdir(output_path)
+    shutil.rmtree(output_path, ignore_errors=True)
 
 
 # baseline tests
@@ -250,8 +252,9 @@ def test_results():
         analysis_acc_te,
     )
 
-    os.remove(data_path)
-    os.remove(image_display_path)
-    os.remove(pca_path)
-    os.rmdir(output_path)
+    # os.remove(data_path)
+    # os.remove(image_display_path)
+    # os.remove(pca_path)
+    # os.rmdir(output_path)
+    shutil.rmtree(output_path, ignore_errors=True)
 
