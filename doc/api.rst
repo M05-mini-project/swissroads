@@ -5,15 +5,15 @@
  Python API
 ============
 
-.. automodule:: analysis
+.. automodule:: rr_swissroads.analysis
    :members:
 
-.. automodule:: baseline
+.. automodule:: rr_swissroads.baseline
    :members:
 
-.. automodule:: data_exploration
+.. automodule:: rr_swissroads.data_exploration
    :members:
 
-.. automodule:: database
+.. automodule:: rr_swissroads.database
    :members:
 

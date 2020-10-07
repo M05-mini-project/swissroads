@@ -10,13 +10,16 @@
 .. image:: https://img.shields.io/badge/github-project-0000c0.svg
    :target: https://https://github.com/M05-mini-project/swissroads/
 
+.. image:: https://img.shields.io/badge/pypi-project-blueviolet.svg
+   :target: https://test.pypi.org/project/rr_swissroads
+
 =======================================================================
  **Transfer learning : Use of advanced feature for image recognition**
 =======================================================================
 
 
 1- Swissroads project (Transfer learning)
----------------------------------------
+-----------------------------------------
 
 This project aims at demonstrating the capacity of machine learning and more precisely Neural Network for image recognition.
 It has the particularity to use a advanced features from a trained Neural Network from tensorflow ie 

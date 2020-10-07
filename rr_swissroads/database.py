@@ -41,7 +41,7 @@ def get_images(folder_name):
         for cat in categories:
             images.append(
                 glob.glob(
-                    "{}/*.png".format("./" + folder_name + "/" + folder + "/" + cat),
+                    "{}/*.png".format(folder_name + "/" + folder + "/" + cat),
                     recursive=True,
                 )
             )

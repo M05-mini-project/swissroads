@@ -52,7 +52,7 @@ The below picture contains a plot obtained running the function data_exploration
 
 
 Results for baseline
---------------------
+---------------------
 
  baseline - logistic regression :
    train accuracy :  1.0
@@ -73,7 +73,7 @@ Baseline confusion matrix:
 
 
 Results for tensorflow 2-layers Neural network:
------------------------------
+------------------------------------------------
 
 Neural network model :
 train accuray 2-layer dense : 0.979
