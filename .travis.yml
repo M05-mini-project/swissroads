@@ -8,8 +8,8 @@ install:
   - pip install -r build-requirements.txt
 
 script:
-  - rr-results  #test if the cmdline app runs at least
-  - nosetests -sv --with-coverage --cover-package=rr rr #runs test
+  - rr_swissroads-results  #test if the cmdline app runs at least
+  - nosetests -sv --with-coverage --cover-package=rr_swissroads rr_swissroads #runs test
   - sphinx-build -b doctest doc sphinx
   - sphinx-build doc sphinx
   - touch sphinx/.nojekyll

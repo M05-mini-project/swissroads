@@ -11,7 +11,7 @@
    :target: https://https://github.com/M05-mini-project/swissroads/
 
 .. image:: https://img.shields.io/badge/pypi-project-blueviolet.svg
-   :target: https://test.pypi.org/project/rr_swissroads
+   :target: https://pypi.org/project/rr_swissroads
 
 =======================================================================
  **Transfer learning : Use of advanced feature for image recognition**
