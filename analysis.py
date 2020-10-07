@@ -298,3 +298,5 @@ def main(df, epochs=15):
     print(df_res)
     print("------------------------------------------------")
 
+    return train_acc, test_acc
+

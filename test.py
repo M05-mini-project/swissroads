@@ -111,22 +111,6 @@ def test_cat2num_1():
 def test_cat2num_2():
   function_cat2num('other', 3)
 
-def test_baseline_accuracy():
-    output_path = r'./output' 
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
-    database.load_data('swissroads_images')
-    with np.load('./output/images_data.npz', allow_pickle=True) as npz_file:
-        df = pd.DataFrame(npz_file['values'], columns= npz_file['columns'])
-
-    baseline_acc_tr, baseline_acc_te = baseline.main(df)
-    assert baseline_acc_tr == 1.0, 'Expected %r, but got %r' % (1.0, baseline_acc_tr)
-    assert baseline_acc_te >= 0.9, 'Expected more than %r, but got %r' % (0.9, baseline_acc_te)
-
-    os.remove('./output/images_data.npz')
-    os.rmdir(output_path)
-
-
 def test_analysis_create_data_sets_1():
 
     # create a dataFrame and check the data split
@@ -179,3 +163,31 @@ def test_get_confusion_matrix_1():
         df.values,
     )
 
+def test_results():
+    output_path = r"./output"
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+
+    database.load_data("swissroads_images")
+    df = data_exploration.main()
+
+    data_path = output_path + '/images_data.npz'
+    image_display_path = output_path + '/images_display.png'
+    pca_path = output_path + '/PCA.png'
+
+    assert os.path.isfile(data_path ), 'File images_data.npz does not exist'
+    assert os.path.isfile(image_display_path), 'File images_display.png does not exist'
+    assert os.path.isfile(pca_path), 'File PCA.png does not exist'
+
+    baseline_acc_tr, baseline_acc_te = baseline.main(df)
+    analysis_acc_tr, analysis_acc_te = analysis.main(df, 10)
+
+    assert baseline_acc_tr == 1.0, 'Expected %r, but got %r' % (1.0, baseline_acc_tr)
+    assert baseline_acc_te >= 0.9, 'Expected more than %r, but got %r' % (0.9, baseline_acc_te)
+    assert analysis_acc_tr >= 0.9, 'Expected more than %r, but got %r' % (0.9, analysis_acc_tr)
+    assert analysis_acc_te >= 0.9, 'Expected more than %r, but got %r' % (0.9, analysis_acc_te)
+
+    os.remove(data_path)
+    os.remove(image_display_path)
+    os.remove(pca_path)
+    os.rmdir(output_path)
