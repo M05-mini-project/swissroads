@@ -11,7 +11,7 @@ def load_requirements(f):
 
 setup(
     name="rr_swissroads",
-    version="1.0.5",
+    version="1.0.6",
     description="Basic example of a Reproducible Research Project in Python linked to swissroads mini-project.",
     url="https://github.com/M05-mini-project/swissroads",
     license="BSD",
