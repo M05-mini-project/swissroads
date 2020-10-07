@@ -22,7 +22,7 @@ deploy:
       branch: master
       condition: "$TRAVIS_PYTHON_VERSION = 3.6"
   - provider: pypi
-    username: __token__
+    username: "__token__"
     password:
       secure: dEFCgYPUn8zWp/1jS/3DLcLupLLp/SreSYghmDODQzEmd7rEsiY4XmjVEDMrSG7wfcEk/uslFBkuh+wEdYlnznxXTeoh014aYYiGlhPgS/sohVDp9W/Wb1ny3LNIKvEYG59aH0uI3ivrFl+3pfLPI2ZaPCt09dON1+T5w3/vtLTMqao8JvrjEBltdIhh4eFGNlLSaT7JwTTTrHrNeWjG5sYbD3ryeyr9Nyn/Y79InuGdyvomF2kgwburiCeUr2w0ZsqyVdY1wv1le60nTyNUxvZksrvdQlg6pMaJnucp39rVyQbKg1SSuHxc2ozXM8pRNYkEm0ldRn1ACHrR4qMLbKtdD5AtGsasO8EX3xuevKDGoId68Fnjnf+M+abd/SGui+dYUPLYKIhSebFK+nofV69Pz0y1GqAgpa7LDSzJJ79LDxPj2RZOHvLJ42izixUq6GF/RKLmvgqHkOwJbPJfBIouKGbRrtjfB4kS9civd4S/JeYyV9NbHxOxfWG3OjsTK2MMmPvh44wwsktBqbiWyC+5934SEWadDvkEXmoFGulm3k5L8tjC1Bo4RVwiy6WxgYAEPaA69YCCP5isGrhny9G2+zm4O/eQrMDELHKCMPveqwdJ4nDrOFpoBnAQp+9uoTerOMDU7RBzA//+lkYUdGoLXRinmg0EkPwDz0wlC/8=
     on:
