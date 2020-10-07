@@ -1,35 +1,31 @@
 language: python
-
 python:
-  - "3.6"
-
+- '3.6'
 install:
-  - pip install .
-  - pip install -r build-requirements.txt
-
+- pip install .
+- pip install -r build-requirements.txt
 script:
-  - rr_swissroads-results  #test if the cmdline app runs at least
-  - nosetests -sv --with-coverage --cover-package=rr_swissroads rr_swissroads #runs test
-  - sphinx-build -b doctest doc sphinx
-  - sphinx-build doc sphinx
-  - touch sphinx/.nojekyll
-  - coveralls #uploads coverage report to coveralls.io
-
+- rr_swissroads-results
+- nosetests -sv --with-coverage --cover-package=rr_swissroads rr_swissroads
+- sphinx-build -b doctest doc sphinx
+- sphinx-build doc sphinx
+- touch sphinx/.nojekyll
+- coveralls
 deploy:
+  matrix:
   - provider: pages:git
     verbose: true
     edge: true
-    token: $GITHUB_TOKEN
-    local_dir: ./sphinx/
+    token: "$GITHUB_TOKEN"
+    local_dir: "./sphinx/"
     on:
       branch: master
       condition: "$TRAVIS_PYTHON_VERSION = 3.6"
   - provider: pypi
-    username: "__token__"
+    username: __token__
     password:
-      secure: pypi-AgEIcHlwaS5vcmcCJGUzODcyNjk2LWY2OTUtNDI5ZS05NmNkLWM3MjdkZGE2ZWQxMgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgRUvbViW-LxgUHG7YL5j9robCjLv2zFzj66nbuluEDsg
+      secure: dEFCgYPUn8zWp/1jS/3DLcLupLLp/SreSYghmDODQzEmd7rEsiY4XmjVEDMrSG7wfcEk/uslFBkuh+wEdYlnznxXTeoh014aYYiGlhPgS/sohVDp9W/Wb1ny3LNIKvEYG59aH0uI3ivrFl+3pfLPI2ZaPCt09dON1+T5w3/vtLTMqao8JvrjEBltdIhh4eFGNlLSaT7JwTTTrHrNeWjG5sYbD3ryeyr9Nyn/Y79InuGdyvomF2kgwburiCeUr2w0ZsqyVdY1wv1le60nTyNUxvZksrvdQlg6pMaJnucp39rVyQbKg1SSuHxc2ozXM8pRNYkEm0ldRn1ACHrR4qMLbKtdD5AtGsasO8EX3xuevKDGoId68Fnjnf+M+abd/SGui+dYUPLYKIhSebFK+nofV69Pz0y1GqAgpa7LDSzJJ79LDxPj2RZOHvLJ42izixUq6GF/RKLmvgqHkOwJbPJfBIouKGbRrtjfB4kS9civd4S/JeYyV9NbHxOxfWG3OjsTK2MMmPvh44wwsktBqbiWyC+5934SEWadDvkEXmoFGulm3k5L8tjC1Bo4RVwiy6WxgYAEPaA69YCCP5isGrhny9G2+zm4O/eQrMDELHKCMPveqwdJ4nDrOFpoBnAQp+9uoTerOMDU7RBzA//+lkYUdGoLXRinmg0EkPwDz0wlC/8=
     on:
       tags: true
       condition: "$TRAVIS_PYTHON_VERSION = 3.6"
-
-
+  
