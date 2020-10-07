@@ -5,7 +5,7 @@ install:
 - pip install .
 - pip install -r build-requirements.txt
 script:
-- rr_swissroads-results
+#- rr_swissroads-results
 - nosetests -sv --with-coverage --cover-package=rr_swissroads rr_swissroads
 - sphinx-build -b doctest doc sphinx
 - sphinx-build doc sphinx
