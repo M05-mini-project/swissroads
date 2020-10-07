@@ -1,24 +1,16 @@
 language: python
+
 python:
-  - "3.7"
+  - "3.6"
+
 install:
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - source "$HOME/miniconda/etc/profile.d/conda.sh"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda info -a
-  - conda env create -f swissroads_conda_env.yml
-  - conda activate swissroads_conda_env
-  - conda install sphinx sphinx_rtd_theme
+  - pip install .
+  - pip install -r build-requirements.txt
 
 script:
-  # Run CI steps
-  - nosetests -sv --with-coverage --cover-package=. test.py
-  #- sphinx-build -b doctest doc sphinx
-
-  # Build docs
+  - rr_swissroads-results  #test if the cmdline app runs at least
+  - nosetests -sv --with-coverage --cover-package=rr_swissroads rr_swissroads #runs test
+  - sphinx-build -b doctest doc sphinx
   - sphinx-build doc sphinx
   - touch sphinx/.nojekyll
   - coveralls #uploads coverage report to coveralls.io
@@ -31,6 +23,13 @@ deploy:
     local_dir: ./sphinx/
     on:
       branch: master
-      condition: $TRAVIS_PYTHON_VERSION = 3.7
+      condition: "$TRAVIS_PYTHON_VERSION = 3.6"
+  - provider: pypi
+    username: "__token__"
+    password:
+      secure: pypi-AgEIcHlwaS5vcmcCJGUzODcyNjk2LWY2OTUtNDI5ZS05NmNkLWM3MjdkZGE2ZWQxMgACJXsicGVybWlzc2lvbnMiOiAidXNlciIsICJ2ZXJzaW9uIjogMX0AAAYgRUvbViW-LxgUHG7YL5j9robCjLv2zFzj66nbuluEDsg
+    on:
+      tags: true
+      condition: "$TRAVIS_PYTHON_VERSION = 3.6"
 
 

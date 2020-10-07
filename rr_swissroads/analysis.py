@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import PIL.Image as Image
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
-import baseline
+from . import baseline
 
 
 # to prevent warnings from pandas when slicing dataframe

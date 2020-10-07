@@ -5,3 +5,14 @@ __pycache__/
 .coverage
 sphinx
 README.html
+
+
+*~
+.ipynb_checkpoints
+__pycache__/
+sphinx/
+.coverage
+*.egg-info/
+.htmlcov/
+.cover/
+dist/
