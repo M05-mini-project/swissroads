@@ -12,7 +12,6 @@ script:
 - touch sphinx/.nojekyll
 - coveralls
 deploy:
-  matrix:
   - provider: pages:git
     verbose: true
     edge: true
