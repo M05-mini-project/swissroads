@@ -1,7 +1,7 @@
 ﻿.. image:: https://travis-ci.org/M05-mini-project/swissroads.svg?branch=master
    :target: https://travis-ci.org/M05-mini-project/swissroads
 
-.. image:: https://coveralls.io/repos/github/M05-mini-project/swissroads/badge.svg
+.. image:: https://coveralls.io/repos/github/M05-mini-project/swissroads/badge.png?branch=master
    :target: https://coveralls.io/github/M05-mini-project/swissroads?branch=master
 
 .. image:: https://img.shields.io/badge/docs-latest-orange.svg
