@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,6 +11,11 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
     <link rel="shortcut icon" href="_static/favicon.ico"/>
   
@@ -19,7 +23,9 @@
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -31,11 +37,6 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Troubleshooting" href="troubleshooting.html" /> 
@@ -52,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Swissroads
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Swissroads
           
 
           
@@ -82,6 +83,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -99,6 +101,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -137,7 +140,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Python API</li>
     
@@ -158,11 +161,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-analysis">
-<span id="python-api"></span><h1>Python API<a class="headerlink" href="#module-analysis" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-rr_swissroads.analysis">
+<span id="python-api"></span><h1>Python API<a class="headerlink" href="#module-rr_swissroads.analysis" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="analysis.create_data_sets">
-<code class="sig-prename descclassname">analysis.</code><code class="sig-name descname">create_data_sets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analysis.html#create_data_sets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analysis.create_data_sets" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.analysis.create_data_sets">
+<code class="sig-prename descclassname">rr_swissroads.analysis.</code><code class="sig-name descname">create_data_sets</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/analysis.html#create_data_sets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.analysis.create_data_sets" title="Permalink to this definition">¶</a></dt>
 <dd><p>The create_data_sets function splits the whole swissroads dataset into 3 main parts:
 train, test and valid.
 The train part is used to train the model.
@@ -172,7 +175,7 @@ The valid part is used to validate finally our model.</p>
 The function takes 2 parameters as input and return True is all runs ok:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p>
+<dd class="field-odd"><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The numpy arrays corrisponds to X_tr, y_tr, X_te, y_te, X_va, y_va.</p>
@@ -184,8 +187,8 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="analysis.get_batches">
-<code class="sig-prename descclassname">analysis.</code><code class="sig-name descname">get_batches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">batch_size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analysis.html#get_batches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analysis.get_batches" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.analysis.get_batches">
+<code class="sig-prename descclassname">rr_swissroads.analysis.</code><code class="sig-name descname">get_batches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">batch_size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/analysis.html#get_batches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.analysis.get_batches" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split a list into batches of a given size and yield them one by one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -202,8 +205,8 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="analysis.create_execute_TF_graph">
-<code class="sig-prename descclassname">analysis.</code><code class="sig-name descname">create_execute_TF_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">epochs</span></em>, <em class="sig-param"><span class="n">X_tr</span></em>, <em class="sig-param"><span class="n">X_te</span></em>, <em class="sig-param"><span class="n">X_va</span></em>, <em class="sig-param"><span class="n">y_tr</span></em>, <em class="sig-param"><span class="n">y_te</span></em>, <em class="sig-param"><span class="n">y_va</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analysis.html#create_execute_TF_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analysis.create_execute_TF_graph" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.analysis.create_execute_TF_graph">
+<code class="sig-prename descclassname">rr_swissroads.analysis.</code><code class="sig-name descname">create_execute_TF_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">epochs</span></em>, <em class="sig-param"><span class="n">X_tr</span></em>, <em class="sig-param"><span class="n">X_te</span></em>, <em class="sig-param"><span class="n">X_va</span></em>, <em class="sig-param"><span class="n">y_tr</span></em>, <em class="sig-param"><span class="n">y_te</span></em>, <em class="sig-param"><span class="n">y_va</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/analysis.html#create_execute_TF_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.analysis.create_execute_TF_graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>The function create_execute_TF_graph is the function in charge of creating a tensorflow graph
 to be then called by the function analysis.main() and be trained.</p>
 <dl class="field-list simple">
@@ -230,8 +233,8 @@ to be then called by the function analysis.main() and be trained.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="analysis.get_confusion_matrix">
-<code class="sig-prename descclassname">analysis.</code><code class="sig-name descname">get_confusion_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_te</span></em>, <em class="sig-param"><span class="n">y_values</span></em>, <em class="sig-param"><span class="n">vals</span></em>, <em class="sig-param"><span class="n">labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analysis.html#get_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analysis.get_confusion_matrix" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.analysis.get_confusion_matrix">
+<code class="sig-prename descclassname">rr_swissroads.analysis.</code><code class="sig-name descname">get_confusion_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y_te</span></em>, <em class="sig-param"><span class="n">y_values</span></em>, <em class="sig-param"><span class="n">vals</span></em>, <em class="sig-param"><span class="n">labels</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/analysis.html#get_confusion_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.analysis.get_confusion_matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function returning the confusion matrix based on input data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -242,22 +245,22 @@ to be then called by the function analysis.main() and be trained.</p>
 <li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of labels to be used in the output DataFrame.</p></li>
 <li><p><strong>Returns</strong> – </p></li>
 <li><p><strong>----------</strong> – </p></li>
-<li><p><strong>df_res</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the confusion matrix to be displayed.</p></li>
+<li><p><strong>df_res</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the confusion matrix to be displayed.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="analysis.main">
-<code class="sig-prename descclassname">analysis.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">epochs</span><span class="o">=</span><span class="default_value">15</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/analysis.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#analysis.main" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.analysis.main">
+<code class="sig-prename descclassname">rr_swissroads.analysis.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">epochs</span><span class="o">=</span><span class="default_value">15</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/analysis.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.analysis.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>The main() function is the main function to execute the Neural network modelling phase
 from the swissroads dataset.
 It reads all the image files from the folder named “swissroads_images” and trains a 2 layer NN.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the input Data.</p></li>
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the input Data.</p></li>
 <li><p><strong>epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of epoches for the Nueral Network training phase.</p></li>
 </ul>
 </dd>
@@ -265,14 +268,14 @@ It reads all the image files from the folder named “swissroads_images” and t
 <dd class="field-even"><p>Pandas DataFrame containing the images data and downloaded features from Tensorflow hub.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)">pandas.DataFrame</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)">pandas.DataFrame</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-baseline"></span><dl class="py function">
-<dt id="baseline.cat2num">
-<code class="sig-prename descclassname">baseline.</code><code class="sig-name descname">cat2num</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/baseline.html#cat2num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#baseline.cat2num" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-rr_swissroads.baseline"></span><dl class="py function">
+<dt id="rr_swissroads.baseline.cat2num">
+<code class="sig-prename descclassname">rr_swissroads.baseline.</code><code class="sig-name descname">cat2num</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/baseline.html#cat2num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.baseline.cat2num" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the int value of a given category</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -288,13 +291,13 @@ It reads all the image files from the folder named “swissroads_images” and t
 </dd></dl>
 
 <dl class="py function">
-<dt id="baseline.main">
-<code class="sig-prename descclassname">baseline.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/baseline.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#baseline.main" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.baseline.main">
+<code class="sig-prename descclassname">rr_swissroads.baseline.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/baseline.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.baseline.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate the logistic regression baseline.</p>
 <p>The function will provide system output for its statistics, including a confusion matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The dataframe generated by data_exploration.main()</p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)"><em>pandas.DataFrame</em></a>) – The dataframe generated by data_exploration.main()</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
@@ -306,16 +309,16 @@ It reads all the image files from the folder named “swissroads_images” and t
 </dl>
 </dd></dl>
 
-<span class="target" id="module-data_exploration"></span><dl class="py function">
-<dt id="data_exploration.plot_images">
-<code class="sig-prename descclassname">data_exploration.</code><code class="sig-name descname">plot_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_test</span></em>, <em class="sig-param"><span class="n">categories</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_exploration.html#plot_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_exploration.plot_images" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-rr_swissroads.data_exploration"></span><dl class="py function">
+<dt id="rr_swissroads.data_exploration.plot_images">
+<code class="sig-prename descclassname">rr_swissroads.data_exploration.</code><code class="sig-name descname">plot_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df_test</span></em>, <em class="sig-param"><span class="n">categories</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/data_exploration.html#plot_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.data_exploration.plot_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>The plot_images function allow to explore the data through plots.</p>
 <p>This function aims at plotting exemples images of each category.
 The function takes 2 parameters as input and return True is all runs ok:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
+<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
 <li><p><strong>categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – This second parameter is a python list containing the data categories.</p></li>
 </ul>
 </dd>
@@ -329,15 +332,15 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_exploration.apply_PCA">
-<code class="sig-prename descclassname">data_exploration.</code><code class="sig-name descname">apply_PCA</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">categories</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_exploration.html#apply_PCA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_exploration.apply_PCA" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.data_exploration.apply_PCA">
+<code class="sig-prename descclassname">rr_swissroads.data_exploration.</code><code class="sig-name descname">apply_PCA</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">df</span></em>, <em class="sig-param"><span class="n">categories</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/data_exploration.html#apply_PCA"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.data_exploration.apply_PCA" title="Permalink to this definition">¶</a></dt>
 <dd><p>The apply_PCA function allow to explore the data through plots.</p>
 <p>This function aims at plotting exemples images of each category.
 The function takes 2 parameters as input and return True is all runs ok:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
+<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
 <li><p><strong>categories</strong> (<em>Python list</em>) – This second parameter is a python list containing the data categories.</p></li>
 </ul>
 </dd>
@@ -351,8 +354,8 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="data_exploration.main">
-<code class="sig-prename descclassname">data_exploration.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_exploration.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#data_exploration.main" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.data_exploration.main">
+<code class="sig-prename descclassname">rr_swissroads.data_exploration.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/data_exploration.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.data_exploration.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>The main() function is the main function to be launched to get the dataset
 stored into a pandas DataFrame.
 It reads all the image files from the folder named “swissroads_images”.</p>
@@ -361,14 +364,14 @@ It reads all the image files from the folder named “swissroads_images”.</p>
 <dd class="field-odd"><p>Pandas DataFrame containing the images data and downloaded features from Tensorflow hub.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)">pandas.DataFrame</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+658.g3a83b2cb4)">pandas.DataFrame</a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-database"></span><dl class="py function">
-<dt id="database.get_images">
-<code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/database.html#get_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#database.get_images" title="Permalink to this definition">¶</a></dt>
+<span class="target" id="module-rr_swissroads.database"></span><dl class="py function">
+<dt id="rr_swissroads.database.get_images">
+<code class="sig-prename descclassname">rr_swissroads.database.</code><code class="sig-name descname">get_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/database.html#get_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.database.get_images" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recursively read all folder content, open all images with PIL and create array containing images data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -386,8 +389,8 @@ It reads all the image files from the folder named “swissroads_images”.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="database.get_batches">
-<code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_batches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">batch_size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/database.html#get_batches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#database.get_batches" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.database.get_batches">
+<code class="sig-prename descclassname">rr_swissroads.database.</code><code class="sig-name descname">get_batches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">batch_size</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/database.html#get_batches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.database.get_batches" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split a list into batches of a given size and yield them one by one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -406,8 +409,8 @@ It reads all the image files from the folder named “swissroads_images”.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="database.load_data">
-<code class="sig-prename descclassname">database.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/database.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#database.load_data" title="Permalink to this definition">¶</a></dt>
+<dt id="rr_swissroads.database.load_data">
+<code class="sig-prename descclassname">rr_swissroads.database.</code><code class="sig-name descname">load_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">folder_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rr_swissroads/database.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rr_swissroads.database.load_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the images present in a given folder, create a database from it and save it in a .npz file.</p>
 <p>A ‘output’ folder must exist for the database to be saved.</p>
 <dl class="field-list simple">
@@ -437,11 +440,19 @@ It reads all the image files from the folder named “swissroads_images”.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Idiap Research Institute
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -452,7 +463,6 @@ It reads all the image files from the folder named “swissroads_images”.</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
