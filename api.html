@@ -172,7 +172,7 @@ The valid part is used to validate finally our model.</p>
 The function takes 2 parameters as input and return True is all runs ok:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p>
+<dd class="field-odd"><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>The numpy arrays corrisponds to X_tr, y_tr, X_te, y_te, X_va, y_va.</p>
@@ -192,7 +192,7 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – </p></li>
 <li><p><strong>y</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – must be the same length of X.</p></li>
-<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The size of each generated batches</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The size of each generated batches</p></li>
 <li><p><strong>Returns</strong> – </p></li>
 <li><p><strong>----------</strong> – </p></li>
 <li><p><strong>batch</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>, </em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – a Y,y batch of size batch_size, the last batch yielded may not be of this size depending on the length of the X input</p></li>
@@ -209,7 +209,7 @@ to be then called by the function analysis.main() and be trained.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of epochs to be then applied by tensorflow to train the model.</p></li>
+<li><p><strong>epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of epochs to be then applied by tensorflow to train the model.</p></li>
 <li><p><strong>X_tr</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Numpy array containing the features to train the model.</p></li>
 <li><p><strong>X_te</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Numpy array containing the features to test the model.</p></li>
 <li><p><strong>X_va</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – Numpy array containing the features to validate the model.</p></li>
@@ -238,11 +238,11 @@ to be then called by the function analysis.main() and be trained.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>y_te</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – numpy array containing the model values.</p></li>
 <li><p><strong>y_values</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – numpy array containing the real values.</p></li>
-<li><p><strong>vals</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – List of labels to create the confusion matrix.</p></li>
-<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – List of labels to be used in the output DataFrame.</p></li>
+<li><p><strong>vals</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of labels to create the confusion matrix.</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of labels to be used in the output DataFrame.</p></li>
 <li><p><strong>Returns</strong> – </p></li>
 <li><p><strong>----------</strong> – </p></li>
-<li><p><strong>df_res</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the confusion matrix to be displayed.</p></li>
+<li><p><strong>df_res</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the confusion matrix to be displayed.</p></li>
 </ul>
 </dd>
 </dl>
@@ -257,15 +257,15 @@ It reads all the image files from the folder named “swissroads_images” and t
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the input Data.</p></li>
-<li><p><strong>epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of epoches for the Nueral Network training phase.</p></li>
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – Pandas DataFrame containing the input Data.</p></li>
+<li><p><strong>epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of epoches for the Nueral Network training phase.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Pandas DataFrame containing the images data and downloaded features from Tensorflow hub.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)">pandas.DataFrame</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)">pandas.DataFrame</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -282,7 +282,7 @@ It reads all the image files from the folder named “swissroads_images” and t
 <dd class="field-even"><p>value from 0 to 5 included corresponding to the int equivalent of the category input</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -294,7 +294,7 @@ It reads all the image files from the folder named “swissroads_images” and t
 <p>The function will provide system output for its statistics, including a confusion matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)"><em>pandas.DataFrame</em></a>) – The dataframe generated by data_exploration.main()</p>
+<dd class="field-odd"><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The dataframe generated by data_exploration.main()</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
@@ -315,15 +315,15 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
-<li><p><strong>categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – This second parameter is a python list containing the data categories.</p></li>
+<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
+<li><p><strong>categories</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – This second parameter is a python list containing the data categories.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True if successful, False otherwise.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -337,7 +337,7 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
+<li><p><strong>df_test</strong> (<a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)"><em>pandas.DataFrame</em></a>) – The pandas DataFrame containing the data.</p></li>
 <li><p><strong>categories</strong> (<em>Python list</em>) – This second parameter is a python list containing the data categories.</p></li>
 </ul>
 </dd>
@@ -345,7 +345,7 @@ The function takes 2 parameters as input and return True is all runs ok:</p>
 <dd class="field-even"><p>True if successful, False otherwise.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -361,7 +361,7 @@ It reads all the image files from the folder named “swissroads_images”.</p>
 <dd class="field-odd"><p>Pandas DataFrame containing the images data and downloaded features from Tensorflow hub.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+618.g4a31802c4)">pandas.DataFrame</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/dev/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.2.0.dev0+653.g1f6710035)">pandas.DataFrame</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -392,15 +392,15 @@ It reads all the image files from the folder named “swissroads_images”.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – List of any kind to be split</p></li>
-<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The size of each generated batches</p></li>
+<li><p><strong>X</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of any kind to be split</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – The size of each generated batches</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>batch</strong> – a batch of size batch_size, the last batch yielded may not be of this size depending on the lenght of the X input</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
