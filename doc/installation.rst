@@ -6,13 +6,11 @@
 Installation
 ------------
 
-This package depends on numpy_, scipy_, pandas_ and tensorflow_ to run properly. Please follow
-the below instruction to run the code propoerly.
-
-To download a copy of this package, clone it from its repository in GitHub:
+To download a fully reproducible copy of this package on Pypi just use:
 
 .. code:: sh
 
-   $ pip install rr_swisroads
+   $ pip install rr_swissroads
+   $ rr_swissroads-results #to run the package
 
 .. include:: links.rst
