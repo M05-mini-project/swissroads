@@ -38,18 +38,3 @@ The original provided "Swissroads" data set is provided by  - EPFL Extension Sch
 It is composed of 469 images in format .png file 256x256 pixels.
 It contains images of bike,car,motorcycle,truck,van and other categories.
 The dataset is already splitted into train/test and Valid sets.
-
-3- Conda environement creation
--------------------------------
-
-A file swissroads_conda_env.yml is provided to first used as follow::
-
-    conda env create -f swissroads_conda_env.yml
-    conda activate swissroads_conda_env
-
-4- How to start the program?
------------------------------
-
-in your newly created environment launch::
-
-    python results.py
